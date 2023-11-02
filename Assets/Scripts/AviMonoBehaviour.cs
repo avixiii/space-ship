@@ -7,6 +7,11 @@ public class AviMonoBehaviour : MonoBehaviour
                 LoadComponents();
         }
 
+        protected virtual void Start()
+        {
+                //For override
+        }
+        
         protected virtual void Awake()
         {
                 LoadComponents();
