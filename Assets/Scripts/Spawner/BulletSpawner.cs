@@ -1,12 +1,5 @@
 using UnityEngine;
 
-public enum PrefabType
-{
-    Bullet_1,
-    // Add more prefab names as needed
-}
-
-
 public class BulletSpawner : Spawner
 {
     private static BulletSpawner _instance;

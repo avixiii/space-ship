@@ -21,8 +21,6 @@ public abstract class Spawner : AviMonoBehaviour
         }
 
         HidePrefabs();
-
-        Debug.Log(transform.name + " LoadPrefabs ", gameObject);
     }
 
     protected virtual void HidePrefabs()
@@ -33,12 +31,12 @@ public abstract class Spawner : AviMonoBehaviour
         }
     }
 
-    public virtual Transform Spawn(PrefabType prefabType, Vector3 spawnPos, Quaternion rotation)
+    public virtual Transform Spawn(string prefabName, Vector3 spawnPos,Quaternion rotation)
     {
-        Transform prefab = GetPrefabByType(prefabType);
-        if (prefab == null)
+        Transform prefab = this.GetPrefabByName(prefabName);
+        if(prefab == null)
         {
-            Debug.LogWarning("Prefab not found: " + prefabType.ToString());
+            Debug.LogWarning("Prefab not found: " + prefabName);
             return null;
         }
 
@@ -47,11 +45,11 @@ public abstract class Spawner : AviMonoBehaviour
     }
 
 
-    public virtual Transform GetPrefabByType(PrefabType prefabType)
+    protected virtual Transform GetPrefabByName(string prefabName)
     {
-        foreach (Transform prefab in prefabs)
+        foreach(Transform prefab in this.prefabs)
         {
-            if (prefab.name == prefabType.ToString()) return prefab;
+            if (prefab.name == prefabName) return prefab;
         }
 
         return null;
