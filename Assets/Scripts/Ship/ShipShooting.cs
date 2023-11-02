@@ -28,15 +28,17 @@ public class ShipShooting : MonoBehaviour
 
     protected virtual void Shooting()
     {
-        if (!isShooting) return;
-        
         shootTimer += Time.fixedDeltaTime;
+
+        if (!isShooting) return;
         if (shootTimer < shootDelay) return;
         shootTimer = 0;
 
         Vector3 spawnPos = transform.position;
         Quaternion rotation = _parentTransform.rotation;
-        Transform newBullet = Instantiate(bulletPrefab, spawnPos, rotation);
+        Transform newBullet = BulletSpawner.Instance.Spawn(PrefabType.Bullet_1, spawnPos, rotation);
+        if (newBullet == null) return;
+
         newBullet.gameObject.SetActive(true);
     }
 
